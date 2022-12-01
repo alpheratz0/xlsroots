@@ -1,6 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
+#include <stdarg.h>
+
+static void
+die(const char *fmt, ...)
+{
+	va_list args;
+
+	fputs("xlsroots: ", stderr);
+	va_start(args, fmt);
+	vfprintf(stderr, fmt, args);
+	va_end(args);
+	fputc('\n', stderr);
+	exit(1);
+}
+
+static void
+version(void)
+{
+	puts("xlsroots version "VERSION);
+	exit(0);
+}
 
 static void
 xlsroots(void)
@@ -22,6 +45,18 @@ xlsroots(void)
 int
 main(int argc, char **argv)
 {
+	while (++argv, --argc > 0) {
+		if ((*argv)[0] == '-' && (*argv)[1] != '\0' && (*argv)[2] == '\0') {
+			switch ((*argv)[1]) {
+				case 'v': version(); break;
+				default: die("invalid option %s", *argv); break;
+			}
+		} else {
+			die("unexpected argument: %s", *argv);
+		}
+	}
+
 	xlsroots();
+
 	return 0;
 }
