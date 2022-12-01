@@ -16,6 +16,8 @@ xlsroots(void)
 
 	for (screen = iter.data; iter.rem != 0; xcb_screen_next(&iter), screen = iter.data)
 		printf("0x%lx\n", screen->root);
+
+	xcb_disconnect(conn);
 }
 
 int
