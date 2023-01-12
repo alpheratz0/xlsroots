@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2022 <alpheratz99@protonmail.com>
+	Copyright (C) 2022-2023 <alpheratz99@protonmail.com>
 
 	This program is free software; you can redistribute it and/or modify it under
 	the terms of the GNU General Public License version 2 as published by the
@@ -35,6 +35,13 @@ die(const char *fmt, ...)
 }
 
 static void
+usage(void)
+{
+	puts("xlsroots [-hv]");
+	exit(0);
+}
+
+static void
 version(void)
 {
 	puts("xlsroots version "VERSION);
@@ -64,6 +71,7 @@ main(int argc, char **argv)
 	while (++argv, --argc > 0) {
 		if ((*argv)[0] == '-' && (*argv)[1] != '\0' && (*argv)[2] == '\0') {
 			switch ((*argv)[1]) {
+				case 'h': usage(); break;
 				case 'v': version(); break;
 				default: die("invalid option %s", *argv); break;
 			}
