@@ -55,7 +55,9 @@ xlsroots(void)
 	const xcb_setup_t *setup;
 	xcb_screen_iterator_t iter;
 
-	conn = xcb_connect(NULL, NULL);
+	if (xcb_connection_has_error(conn = xcb_connect(NULL, NULL)))
+		die("can't open display");
+
 	setup = xcb_get_setup(conn);
 	iter = xcb_setup_roots_iterator(setup);
 
