@@ -11,7 +11,7 @@ xlsroots: xlsroots.o
 clean:
 	rm -f xlsroots xlsroots.o xlsroots-$(VERSION).tar.gz
 
-install: xlsroots
+install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	cp -f xlsroots $(DESTDIR)$(PREFIX)/bin
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/xlsroots
