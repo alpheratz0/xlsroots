@@ -38,7 +38,7 @@ die(const char *fmt, ...)
 static void
 usage(void)
 {
-	puts("xlsroots [-hv]");
+	puts("usage: xlsroots [-hv]");
 	exit(0);
 }
 
