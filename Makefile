@@ -6,7 +6,7 @@ include config.mk
 all: xlsroots
 
 xlsroots: xlsroots.o
-	$(CC) $(LDFLAGS) -o xlsroots xlsroots.o $(LDLIBS)
+	$(CC) $(LDFLAGS) -o xlsroots xlsroots.o
 
 clean:
 	rm -f xlsroots xlsroots.o xlsroots-$(VERSION).tar.gz
